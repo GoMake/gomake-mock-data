@@ -1,6 +1,6 @@
 {
   "name": "mock-telemetry",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Mock Telemetry and Flight Data",
   "main": "lib/index.js",
   "engines": {
@@ -16,7 +16,8 @@
   "keywords": [],
   "author": "goMake Team <team@gomake.io>",
   "license": "GPLv3",
-  "devDependencies": {
-  },
-  "dependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "glob-fs": "^0.1.6"
+  }
 }
