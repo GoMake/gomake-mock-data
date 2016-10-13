@@ -1,0 +1,22 @@
+{
+  "name": "mock-telemetry",
+  "version": "0.0.1",
+  "description": "Mock Telemetry and Flight Data",
+  "main": "lib/index.js",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "mock-device": "python device/rockblock.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoMake/mock-telemetry.git"
+  },
+  "keywords": [],
+  "author": "goMake Team <team@gomake.io>",
+  "license": "GPLv3",
+  "devDependencies": {
+  },
+  "dependencies": {}
+}
