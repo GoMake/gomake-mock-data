@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var glob = require('glob');
+var pickRandom = require('pick-random');
 
 function getJsonFilesFromFolder(fileFolder) {
 	var filePath = `static/${fileFolder}/*.json`; /* */
@@ -15,5 +16,18 @@ function getJsonFilesFromFolder(fileFolder) {
 }
 
 module.exports = {
-	telemetry: getJsonFilesFromFolder('telemetry')
-}
+	_data: {
+		telemetry: getJsonFilesFromFolder('telemetry'),
+		flights: getJsonFilesFromFolder('flights')
+	},
+	get: function(key, filename, count) { 
+		if(this._data[key]){
+			if(count) {
+				return pickRandom(this._data[key][filename], {count: count});
+			}
+			return this._data[key][filename];
+		}
+		return [];
+	}
+};
+
