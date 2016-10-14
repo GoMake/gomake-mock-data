@@ -11,4 +11,18 @@
 		"Barometer": 338.73,
 		"Sound": 247
 	}
+},
+{
+	"imei": 300234063771851,
+	"transmitTime": "2016-08-20 T16:52:00Z UTC",
+	"latitude": 42.3347161671,
+	"longitude": -72.6807306,
+	"satellites": 9,
+	"fixQuality": 2,
+	"altitude": 77,
+	"sensors": {
+		"Temperature": -40.02,
+		"Barometer": 338.73,
+		"Sound": 247
+	}
 }]

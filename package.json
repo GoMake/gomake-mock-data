@@ -19,6 +19,7 @@
   "devDependencies": {},
   "dependencies": {
     "fs-sync": "^1.0.3",
-    "glob": "^7.1.1"
+    "glob": "^7.1.1",
+    "pick-random": "^1.1.0"
   }
 }
