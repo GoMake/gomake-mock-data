@@ -8,9 +8,8 @@ function getJsonFilesFromFolder(fileFolder) {
 	var filesObject = {};
 	files.forEach(function(file){
 		var basename = path.basename(file, '.json');
-		var fileContent = fs.readFileSync(file);
+		var fileContent = fs.readFileSync(`${__dirname}/${file}`);
 		filesObject[basename] = JSON.parse(fileContent);
-		
 	});
 	return filesObject; 
 }
