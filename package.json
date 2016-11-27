@@ -1,6 +1,6 @@
 {
   "name": "gomake-mock-data",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Mock Telemetry and Flight Data",
   "main": "lib/index.js",
   "engines": {
