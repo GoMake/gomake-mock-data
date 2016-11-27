@@ -6,7 +6,8 @@
   "launchStartDateTime": "2016-10-15T22:28:06.054Z",
   "launchLocation": "-41.123, 107.8543",
   "launchAltitude": 70,
-  "registeredTrackers": [1, 23]
+  "registeredTrackers": [1, 23],
+  "deviceIds": ["300234063771850"]
 }, {
   "callSign": "BATMAN",
   "flightNumber": 1,
@@ -15,7 +16,8 @@
   "launchStartDateTime": "2016-10-13T22:28:06.054Z",
   "launchLocation": "-41.123, 107.8543",
   "launchAltitude": 70,
-  "registeredTrackers": [1]
+  "registeredTrackers": [1],
+  "deviceIds": ["300234063771850"]
 }, {
   "callSign": "SUPERMAN",
   "flightNumber": 1,
@@ -24,5 +26,6 @@
   "launchStartDateTime": "2016-09-17T22:28:06.054Z",
   "launchLocation": "-41.123, 107.8543",
   "launchAltitude": 70,
-  "registeredTrackers": [2, 9, 10]
+  "registeredTrackers": [2, 9, 10],
+  "deviceIds": ["300234063771851"]
 }]
