@@ -1,15 +1,18 @@
+import sys, os
+import getopt
 import math
 from random import randint, random, choice
 from time import sleep
 from datetime import datetime
 import csv
 import requests
+from requests_jwt import JWTAuth
 from sensors import Sensors
 
 class RockBlock():
 	"""
 	Example Message:
-		imei: 300234063771850
+		device_id: 300234063771850
 		momsn: 130
 		transmit_time: 2016-08-20T16:16:22Z UTC
 		iridium_latitude: 42.3530
@@ -17,8 +20,10 @@ class RockBlock():
 		iridium_cep: 4.0
 		data: 6c617469747564653d34322e33333437313035266c6f6e6769747564653d2d37322e3638303731393833333326616c7469747564653d303030373826736174656c6c697465733d3130266669785f7175616c6974793d3226536f756e643d313337264261726f6d657465723d313030312e34362654656d70657261747572653d34312e3030
 	"""
-	def __init__(self):
-		self.url = 'http://localhost/telemetry'
+	def __init__(self, url, flightname):
+		jwt_token = os.environ.get('GM_JWT_SECRET')
+		self.auth = JWTAuth(jwt_token)
+		self.url = url + '/flight/' + flightname + '/telemetry'
 		self.timeout_seconds = 10
 		self.coords = []
 		self.imei = None
@@ -27,15 +32,16 @@ class RockBlock():
 		self.sensors = Sensors(self.coords)
 	def send_message(self):
 		payload = self.get_message()
+		print '===trying: ' + self.url + '==='
 		print payload
 		try:
-			r = requests.post(self.url, data=payload, timeout=self.timeout_seconds)
+			r = requests.post(self.url, data=payload, auth=self.auth, timeout=self.timeout_seconds)
 			print r.text
 		except requests.exceptions.ConnectionError:
 			print '===send_message failed===' 
 	def get_message(self):
 		message = {
-			'imei':self.get_imei(),
+			'device_id':self.get_imei(),
 			'momsn': self.get_momsn(),
 			'transmit_time': self.get_transmit_time(),
 			'iridium_latitude': self.get_iridium_latitude(),
@@ -95,8 +101,25 @@ class RockBlock():
 				coordinate_tuple = (coordinate[0], coordinate[1], coordinate[2])
 				self.coords.append(coordinate_tuple)
 
+def get_arguments():
+	url=''
+	flightname=''
+	try:
+		opts, args = getopt.getopt(sys.argv[1:],"u:f:",["url=","flightname="])
+	except getopt.GetoptError:
+		sys.exit(2)
+	for opt, arg in opts:
+		if opt in ("-u", "--url"):
+			url = arg
+		elif opt in ("-f", "--flightname"):
+			flightname = arg
+	return (url, flightname)
+
 if __name__ == "__main__":
-	rockblock = RockBlock()
+	args = get_arguments()
+	url, flightname = args[0], args[1]
+	print args
+	rockblock = RockBlock(url,flightname)
 	while(True):
 		rockblock.send_message()
 		sleep(10)
