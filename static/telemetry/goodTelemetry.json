@@ -1,28 +1,31 @@
 [{
-	"deviceId": "300234063771850",
-	"transmitTime": "2016-08-20 T16:50:00Z UTC",
-	"latitude": 42.3347161667,
-	"longitude": -72.6807305,
-	"satellites": 10,
-	"fixQuality": 2,
-	"altitude": 77,
-	"sensors": {
-		"Temperature": -40.02,
-		"Barometer": 338.73,
-		"Sound": 247
-	}
-},
-{
-	"deviceId": "300234063771851",
-	"transmitTime": "2016-08-20 T16:52:00Z UTC",
-	"latitude": 42.3347161671,
-	"longitude": -72.6807306,
-	"satellites": 9,
-	"fixQuality": 2,
-	"altitude": 77,
-	"sensors": {
-		"Temperature": -40.02,
-		"Barometer": 338.73,
-		"Sound": 247
-	}
+  "deviceId": 300234063771850,
+  "transmitTime": "2016-08-20T16:50:00Z UTC",
+  "location": {
+    "type": "Point",
+    "coordinates": [-72.6807305, 42.3347161667]
+  },
+  "satellites": 10,
+  "fixQuality": 2,
+  "altitude": 77,
+  "sensors": {
+    "temperature": "-40.02",
+    "barometer": "338.73",
+    "sound": "247"
+  }
+}, {
+  "deviceId": 300234063771851,
+  "transmitTime": "2016-08-20T16:52:00Z UTC",
+  "location": {
+    "type": "Point",
+    "coordinates": [-72.6807306, 42.3347161671]
+  },
+  "satellites": 9,
+  "fixQuality": 2,
+  "altitude": 77,
+  "sensors": {
+    "temperature": "-40.02",
+    "barometer": "338.73",
+    "sound": "247"
+  }
 }]

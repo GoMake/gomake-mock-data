@@ -4,7 +4,10 @@
   "createdAt": "2016-10-15T22:28:06.054Z",
   "updatedAt": "2016-10-15T22:28:06.054Z",
   "launchStartDateTime": "2016-10-15T22:28:06.054Z",
-  "launchLocation": "-41.123, 107.8543",
+  "launchLocation": {
+    "type": "Point",
+    "coordinates": [107.8543, -41.123]
+  },
   "launchAltitude": 70,
   "registeredTrackers": [1, 23]
 }, {
@@ -13,7 +16,10 @@
   "createdAt": "2016-10-13T22:28:06.054Z",
   "updatedAt": "2016-10-13T22:28:06.054Z",
   "launchStartDateTime": "2016-10-13T22:28:06.054Z",
-  "launchLocation": "-41.123, 107.8543",
+  "launchLocation": {
+    "type": "Point",
+    "coordinates": [107.8543, -41.123]
+  },
   "launchAltitude": 70,
   "registeredTrackers": [1]
 }, {
@@ -22,7 +28,10 @@
   "createdAt": "2016-09-17T22:28:06.054Z",
   "updatedAt": "2016-09-17T22:28:06.054Z",
   "launchStartDateTime": "2016-09-17T22:28:06.054Z",
-  "launchLocation": "-41.123, 107.8543",
+  "launchLocation":  {
+    "type": "Point",
+    "coordinates": [107.8543, -41.123]
+  },
   "launchAltitude": 70,
   "registeredTrackers": [2, 9, 10]
 }]
