@@ -26,7 +26,7 @@ class RockBlock():
 		self.url = url + '/flight/' + flightname + '/telemetry'
 		self.timeout_seconds = 10
 		self.coords = []
-		self.imei = device_id or None
+		self.imei = device_id
 		self.momsn = None
 		self.import_coordinates_list()
 		self.sensors = Sensors(self.coords)
@@ -51,8 +51,6 @@ class RockBlock():
 		}
 		return message
 	def get_imei(self):
-		if(not self.imei):
-			self.imei = self.imei or self.get_random_digits(15)
 		return self.imei
 	def get_momsn(self):
 		if(not self.momsn):
@@ -106,7 +104,7 @@ def get_arguments():
 	flightname=''
 	device_id=''
 	try:
-		opts, args = getopt.getopt(sys.argv[1:],"u:f:i",["url=","flightname=","imei="])
+		opts, args = getopt.getopt(sys.argv[1:],"u:f:i:",["url=","flightname=","imei="])
 	except getopt.GetoptError:
 		sys.exit(2)
 	for opt, arg in opts:
@@ -122,7 +120,7 @@ if __name__ == "__main__":
 	args = get_arguments()
 	url, flightname, device_id = args[0], args[1], args[2]
 	print args
-	rockblock = RockBlock(url,flightname, device_id)
+	rockblock = RockBlock(url=url,flightname=flightname, device_id=device_id)
 	while(True):
 		rockblock.send_message()
 		sleep(10)
