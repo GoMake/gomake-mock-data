@@ -41,7 +41,7 @@ class RockBlock():
 			print '===send_message failed===' 
 	def get_message(self):
 		message = {
-			'device_id':self.get_imei(),
+			'imei':self.get_imei(),
 			'momsn': self.get_momsn(),
 			'transmit_time': self.get_transmit_time(),
 			'iridium_latitude': self.get_iridium_latitude(),
@@ -59,7 +59,7 @@ class RockBlock():
 			self.momsn += 1
 		return self.momsn
 	def get_transmit_time(self):
-		return datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ UTC')
+		return datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 	def get_iridium_latitude(self):
 		if(len(self.coords) > 0):
 			return float(choice(self.coords)[0])
