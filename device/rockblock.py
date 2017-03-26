@@ -20,9 +20,10 @@ class RockBlock():
 		iridium_cep: 4.0
 		data: 6c617469747564653d34322e33333437313035266c6f6e6769747564653d2d37322e3638303731393833333326616c7469747564653d303030373826736174656c6c697465733d3130266669785f7175616c6974793d3226536f756e643d313337264261726f6d657465723d313030312e34362654656d70657261747572653d34312e3030
 	"""
-	def __init__(self, url, flightname, device_id=None):
+	def __init__(self, url, flightname, device_id=None, user_id=None):
 		jwt_token = os.environ.get('GM_JWT_SECRET')
 		self.auth = JWTAuth(jwt_token)
+		self.user_id = user_id
 		self.url = url + '/flight/' + flightname + '/telemetry'
 		self.timeout_seconds = 10
 		self.coords = []
@@ -32,13 +33,15 @@ class RockBlock():
 		self.sensors = Sensors(self.coords)
 	def send_message(self):
 		payload = self.get_message()
+		if(self.auth and self.user_id):
+			self.auth.add_field('user_id', self.user_id)
 		print '===trying: ' + self.url + '==='
 		print payload
 		try:
 			r = requests.post(self.url, data=payload, auth=self.auth, timeout=self.timeout_seconds)
 			print r.text
 		except requests.exceptions.ConnectionError:
-			print '===send_message failed===' 
+			print '===send_message failed==='
 	def get_message(self):
 		message = {
 			'imei':self.get_imei(),
@@ -103,8 +106,9 @@ def get_arguments():
 	url=''
 	flightname=''
 	device_id=''
+	user_id=''
 	try:
-		opts, args = getopt.getopt(sys.argv[1:],"u:f:i:",["url=","flightname=","imei="])
+		opts, args = getopt.getopt(sys.argv[1:],"u:f:i:s:",["url=","flightname=","imei=","userid="])
 	except getopt.GetoptError:
 		sys.exit(2)
 	for opt, arg in opts:
@@ -114,13 +118,14 @@ def get_arguments():
 			flightname = arg
 		elif opt in ("-i", "--imei"):
 			device_id = arg
-	return (url, flightname, device_id)
+		elif opt in ("-s", "--userid"):
+			user_id = arg
+	return (url, flightname, device_id, user_id)
 
 if __name__ == "__main__":
 	args = get_arguments()
-	url, flightname, device_id = args[0], args[1], args[2]
-	print args
-	rockblock = RockBlock(url=url,flightname=flightname, device_id=device_id)
+	url, flightname, device_id, user_id = args[0], args[1], args[2], args[3]
+	rockblock = RockBlock(url=url,flightname=flightname, device_id=device_id, user_id=user_id)
 	while(True):
 		rockblock.send_message()
 		sleep(10)
