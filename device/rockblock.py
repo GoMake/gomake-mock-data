@@ -122,4 +122,4 @@ if __name__ == "__main__":
 	rockblock = RockBlock(url=url,flightname=flightname, device_id=device_id, jwt_token=jwt_token)
 	while(True):
 		rockblock.send_message()
-		sleep(10)
+		sleep(60)
