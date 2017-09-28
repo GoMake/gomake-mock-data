@@ -18,7 +18,7 @@ class Sensors():
 			'altitude': self.get_altitude(),
 			'satellites': self.get_satellites(),
 			'fix_quality': self.get_fix_quality(),
-			'Sound': self.get_sound(),
+			'Ozone': self.get_ozone(),
 			'Barometer': self.get_barometer(),
 			'Temperature': self.get_temperature()
 		}
@@ -46,5 +46,7 @@ class Sensors():
 		return ("%.2f" % uniform(100,500))
 	def get_sound(self):
 		return str(randint(0,500))
+	def get_ozone(self):
+		return str(randint(10,1000))
 	def to_hex(self,data_string):
 		return  "".join([hex(ord(c))[2:].zfill(2) for c in data_string])
